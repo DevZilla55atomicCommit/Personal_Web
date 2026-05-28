@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Personal_Web",
+			"path": "Personal_Web"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "web-test"
+	}
+}
