@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow crawling of private resources
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemaps
+Sitemap: /sitemap-index.xml

@@ -1,0 +1,92 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+// Sample projects - can be customized
+const projects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'A full-stack e-commerce solution with cart functionality, payment processing, and admin dashboard.',
+    tags: ['ecommerce', 'fullstack', 'payment'],
+    link: '/projects/ecommerce/',
+    date: '2026-04-10',
+  },
+  {
+    title: 'Task Manager',
+    description: 'Productivity app with drag-and-drop kanban boards, team collaboration features, and real-time updates.',
+    tags: ['productivity', 'collaboration', 'kanban'],
+    link: '/projects/task-manager/',
+    date: '2026-03-25',
+  },
+  {
+    title: 'Weather App',
+    description: 'Beautiful weather application with forecasts, maps integration, and location-based recommendations.',
+    tags: ['weather', 'maps', 'api'],
+    link: '/projects/weather/',
+    date: '2026-02-15',
+  },
+  {
+    title: 'Fitness Tracker',
+    description: 'Health and fitness tracking application with workout logging, progress charts, and goal setting.',
+    tags: ['health', 'fitness', 'charts'],
+    link: '/projects/fitness/',
+    date: '2026-01-30',
+  },
+  {
+    title: 'Note Taking App',
+    description: 'Minimalist note-taking application with markdown support, tagging, and search functionality.',
+    tags: ['notes', 'markdown', 'productivity'],
+    link: '/projects/notes/',
+    date: '2025-12-20',
+  },
+  {
+    title: 'Recipe Finder',
+    description: 'Searchable recipe database with meal planning, grocery lists, and nutritional information.',
+    tags: ['recipes', 'planning', 'api'],
+    link: '/projects/recipes/',
+    date: '2025-11-15',
+  },
+  {
+    title: 'Chat Application',
+    description: 'Real-time chat app with direct messages, group chats, and file sharing capabilities.',
+    tags: ['chat', 'realtime', 'collaboration'],
+    link: '/projects/chat/',
+    date: '2025-10-05',
+  },
+  {
+    title: 'Blog Platform',
+    description: 'Headless CMS solution with markdown support, SEO optimization, and blog post templates.',
+    tags: ['cms', 'blog', 'seo'],
+    link: '/projects/blog/',
+    date: '2025-09-18',
+  },
+  {
+    title: 'Image Gallery',
+    description: 'Lightweight image gallery with lazy loading, lightbox, and category filtering.',
+    tags: ['gallery', 'images', 'lazy'],
+    link: '/projects/gallery/',
+    date: '2025-08-22',
+  },
+];
+---
+
+<section aria-labelledby="projects-heading">
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
+    {projects.map((project, index) => (
+      <div
+        key={project.title}
+        role="listitem"
+        aria-labelledby={`project-${index}-title`}
+      >
+        <ProjectCard {...project} />
+      </div>
+    ))}
+  </div>
+
+  {projects.length === 0 && (
+    <div class="text-center py-12">
+      <p class="text-gray-500 dark:text-gray-400">
+        No projects found. Check the <code class="text-sm">content/_projects</code> directory.
+      </p>
+    </div>
+  )}
+</section>

@@ -1,0 +1,132 @@
+---
+import { config } from '../../config.mjs';
+
+const navLinks = config.navigation?.map((link) => ({
+  label: link.label,
+  href: link.href,
+})) ?? [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Writing', href: '/writing/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+const isMobile = () => window.innerWidth < 768;
+const isMenuOpen = typeof window !== 'undefined' ? localStorage.getItem('nav-mobile') ?? 'false' : false;
+
+// Prevent quick tab switches on mobile
+if (isMobile() && typeof window !== 'undefined') {
+  let lastTabChange = 0;
+  const updateLastTabChange = () => {
+    lastTabChange = Date.now();
+    setTimeout(() => {
+      localStorage.setItem('nav-mobile', 'false');
+    }, 3000);
+  };
+  document.addEventListener('visibilitychange', updateLastTabChange);
+  document.addEventListener('focusin', updateLastTabChange);
+}
+---
+
+<nav
+  role="navigation"
+  aria-label="Main navigation"
+  class="glass sticky top-4 z-50 mx-4 rounded-2xl"
+  aria-collapse="open"
+>
+  <div class="container-custom flex items-center justify-between px-4 py-3">
+    <!-- Logo -->
+    <a
+      href="/"
+      class="flex items-center space-x-3 group"
+      aria-label="Dev Portfolio home"
+    >
+      <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg group-hover:shadow-xl transition-shadow duration-200"></div>
+      <span class="text-lg font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-300">
+        {config.siteTitle}
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul
+      class="hidden md:flex items-center gap-1"
+      role="menubar"
+      aria-orientation="horizontal"
+    >
+      {navLinks.map((link) => (
+        <li role="none">
+          <a
+            role="menuitem"
+            href={link.href}
+            class="btn secondary px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800/50 focus:ring-2 focus:ring-primary-500/50"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button
+      type="button"
+      class="md:hidden btn-secondary p-2"
+      onclick={() => {
+        const menu = document.getElementById('mobile-menu');
+        if (menu) {
+          menu.setAttribute('aria-expanded', !isMenuOpen);
+          localStorage.setItem('nav-mobile', !isMenuOpen ? 'true' : 'false');
+        }
+      }}
+      aria-controls="mobile-menu"
+      aria-expanded={isMenuOpen}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        {isMenuOpen ? (
+          <>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </>
+        ) : (
+          <>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </>
+        )}
+      </svg>
+    </button>
+
+    <!-- Mobile Navigation Menu -->
+    <ul
+      id="mobile-menu"
+      class="hidden md:hidden glass origin-top rounded-2xl px-3 py-4 transition-all duration-300"
+      aria-label="Mobile navigation menu"
+    >
+      {navLinks.map((link) => (
+        <li class="pb-2">
+          <a
+            href={link.href}
+            class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-800/50"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

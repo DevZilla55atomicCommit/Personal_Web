@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/Single.astro';
+
+export const metadata = {
+  title: 'About - Dev Portfolio',
+  description: 'Learn more about me, my journey, and what drives my passion for web development.',
+};
+---
+
+<BaseLayout>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <article class="prose prose-lg dark:prose-invert mx-auto">
+      <header class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          About Me
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          My journey, values, and what I'm passionate about.
+        </p>
+      </header>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          Hello! 👋
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          I'm a passionate web developer based in San Francisco with a love for building accessible,
+          performant, and elegant web experiences. My name is DevZilla55, and I've been crafting
+          digital products for over a decade.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          My Journey
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+          My journey in web development started with a simple desire to create beautiful, functional
+          websites. What began as a hobby quickly evolved into a career that I still love today.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          Over the years, I've had the privilege of working with startups, agencies, and
+          enterprise clients, each experience teaching me something new about what it takes
+          to build software that people actually use.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          What I Believe In
+        </h2>
+        <div class="space-y-4">
+          <div class="card p-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              Accessibility First
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              The web should be usable by everyone. I'm committed to building experiences that work
+              for people of all abilities and using semantic HTML to help screen readers and
+              other assistive technologies.
+            </p>
+          </div>
+          <div class="card p-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              Performance Matters
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Every millisecond counts. I optimize images, minimize JavaScript, and leverage
+              browser caching to ensure fast load times and smooth interactions.
+            </p>
+          </div>
+          <div class="card p-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              Clean Code
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Code should be readable, maintainable, and well-tested. I write code that I'd
+              want to read and maintain years later.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          What I'm Working On
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          Right now, I'm focused on building accessible component libraries, exploring edge
+          computing for web applications, and contributing to open-source projects in the
+          JavaScript ecosystem.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          Let's Connect
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+          I'm always open to new opportunities and interesting projects. Whether you want to
+          discuss web development, collaborate on something, or just say hi, I'd love to hear from you!
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact/" class="btn btn-primary">Get in Touch</a>
+          <a href="/projects/" class="btn btn-secondary">View My Projects</a>
+        </div>
+      </section>
+    </article>
+
+    <hr class="my-12 border-gray-200 dark:border-gray-800" />
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+        Skills & Technologies
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {['JavaScript', 'TypeScript', 'React', 'Astro', 'Node.js', 'Next.js', 'Tailwind CSS', 'MDX', 'Git', 'Docker', 'PostgreSQL', 'Redis'].map((skill) => (
+          <div
+            key={skill}
+            class="rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-3 text-center font-medium text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-700 dark:hover:text-primary-300 transition-colors cursor-default"
+          >
+            {skill}
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,126 @@
+---
+const {
+  title = 'Hello, I am a Developer',
+  subtitle = 'I build accessible, performant web experiences with modern tools and best practices. Let me show you what I can do.',
+  ctaPrimary = 'View Projects',
+  ctaPrimaryLink = '#projects',
+  ctaSecondary = 'About Me',
+  ctaSecondaryLink = '/about/',
+  illustration = null,
+} = Astro.props;
+---
+
+<div class="grid lg:grid-cols-2 gap-12 items-center min-h-full">
+  <!-- Text Content -->
+  <div class="space-y-8">
+    <div>
+      <div class="inline-flex items-center gap-2 mb-4">
+        <span class="p-2 rounded-full bg-primary-100 dark:bg-primary-900/30">
+          <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </span>
+        <span class="text-sm font-medium text-primary-700 dark:text-primary-400">
+          Based in San Francisco
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-50 mb-6 leading-tight">
+        <span class="bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 bg-clip-text text-transparent">
+          {title}
+        </span>
+      </h1>
+    </div>
+
+    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+      {subtitle}
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a
+        href={ctaPrimaryLink}
+        class="btn btn-primary text-base px-6 py-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+        aria-label="View Projects link"
+      >
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          {ctaPrimary}
+        </span>
+      </a>
+      <a
+        href={ctaSecondaryLink}
+        class="btn glass text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-base px-6 py-3 backdrop-blur-sm"
+        aria-label="About Me link"
+      >
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          {ctaSecondary}
+        </span>
+      </a>
+    </div>
+
+    <!-- Skills Tags -->
+    <div class="pt-4">
+      <p class="text-sm text-gray-500 dark:text-gray-500 mb-3">Technologies I work with:</p>
+      <div class="flex flex-wrap gap-2">
+        {['JavaScript', 'TypeScript', 'React', 'Astro', 'Node.js', 'Tailwind CSS', 'MDX', 'GitHub Actions'].map((skill) => (
+          <span
+            key={skill}
+            class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Illustration / Visual -->
+  <div class="relative flex items-center justify-center">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-200/20 to-accent-200/20 dark:from-primary-900/20 dark:to-accent-900/20 rounded-3xl transform rotate-3"></div>
+    <div class="relative z-10 w-full max-w-md">
+      <svg
+        viewBox="0 0 400 400"
+        class="w-full h-full text-gray-200 dark:text-gray-800"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="heroGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.1"/>
+          </linearGradient>
+          <linearGradient id="heroGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#ec4899" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="180" stroke="url(#heroGradient1)" stroke-width="3" fill="none" stroke-dasharray="10 15" opacity="0.5" />
+        <circle cx="200" cy="200" r="140" stroke="url(#heroGradient2)" stroke-width="2" fill="none" stroke-dasharray="8 12" opacity="0.4" />
+        <circle cx="200" cy="200" r="100" stroke="url(#heroGradient1)" stroke-width="4" fill="none" opacity="0.3" />
+        <path d="M 40 100 L 40 300" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" opacity="0.3" />
+        <text x="55" y="180" font-family="monospace" font-size="20" fill="#0ea5e9" opacity="0.3" font-weight="bold">{`const`}</text>
+        <text x="90" y="180" font-family="monospace" font-size="20" fill="#3b82f6" opacity="0.3" font-weight="bold">{`developer`}</text>
+        <text x="55" y="220" font-family="monospace" font-size="20" fill="#0ea5e9" opacity="0.3">{`=`}</text>
+        <text x="85" y="220" font-family="monospace" font-size="20" fill="#f59e0b" opacity="0.3">{`{`}</text>
+        <text x="110" y="250" font-family="monospace" font-size="16" fill="#10b981" opacity="0.5">accessible</text>
+        <text x="200" y="250" font-family="monospace" font-size="16" fill="#10b981" opacity="0.5">performant</text>
+        <text x="290" y="250" font-family="monospace" font-size="16" fill="#10b981" opacity="0.5">elegant</text>
+        <text x="85" y="280" font-family="monospace" font-size="20" fill="#f59e0b" opacity="0.3">{`}`}</text>
+        <circle cx="150" cy="150" r="25" fill="url(#heroGradient1)" opacity="0.3" />
+        <circle cx="250" cy="120" r="20" fill="url(#heroGradient2)" opacity="0.25" />
+        <circle cx="300" cy="280" r="30" fill="url(#heroGradient1)" opacity="0.2" />
+        <circle cx="120" cy="320" r="18" fill="url(#heroGradient2)" opacity="0.2" />
+        <path d="M 200 100 L 200 300" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="5 5" opacity="0.2" />
+        <path d="M 100 200 L 300 200" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5 5" opacity="0.2" />
+        <circle cx="200" cy="200" r="60" stroke="url(#heroGradient2)" stroke-width="4" fill="none" opacity="0.3" />
+        <circle cx="200" cy="200" r="40" fill="url(#heroGradient1)" opacity="0.2" />
+      </svg>
+    </div>
+  </div>
+</div>

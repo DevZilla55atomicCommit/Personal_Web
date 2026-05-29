@@ -1,0 +1,77 @@
+---
+interface ProjectProps {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  date?: string;
+  imageUrl?: string;
+}
+
+const project = Astro.props;
+---
+
+<div
+  class="group relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-0.5"
+>
+  <div class="flex items-start justify-between mb-4">
+    <div class="flex-1 min-w-0">
+      <h3
+        class="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+        id={`project-${project.title.replace(/\s/g, '')}-title`}
+      >
+        {project.title}
+      </h3>
+    </div>
+    {project.imageUrl && (
+      <img
+        src={project.imageUrl}
+        alt={`Thumbnail for ${project.title}`}
+        class="w-16 h-16 rounded-lg object-cover border border-gray-200 dark:border-gray-700 group-hover:scale-110 transition-transform duration-300"
+        loading="lazy"
+        width="64"
+        height="64"
+      />
+    )}
+  </div>
+
+  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+    {project.description}
+  </p>
+
+  <div class="flex flex-wrap gap-1.5 mb-4">
+    {project.tags.slice(0, 2).map((tag) => (
+      <span
+        key={tag}
+        class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors"
+      >
+        {tag}
+      </span>
+    ))}
+    {project.tags.length > 2 && (
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-500">
+        +{project.tags.length - 2} more
+      </span>
+    )}
+  </div>
+
+  <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800">
+    <span class="text-xs text-gray-500 dark:text-gray-500">
+      {project.date ? new Date(project.date).toLocaleDateString('en-US', { month: 'short', year: '2-digit' }) : undefined}
+    </span>
+    <a
+      href={project.link}
+      class="inline-flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors focus:outline-none focus:underline"
+    >
+      View Project
+      <svg class="ml-1.5 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 8l4 4m0 0l-4 4m4-4H3"
+        />
+      </svg>
+    </a>
+  </div>
+</div>

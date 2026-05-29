@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/Project.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+// Projects from content directory
+const projects = (await Astro.glob({
+  base: '/content/_projects',
+  include: '**/index.md',
+  depth: 1,
+}))
+  .map((file) => ({
+    title: file.data.title || file.stem,
+    description: file.data.description || 'No description provided.',
+    tags: file.data.tags || [],
+    link: `/projects/${file.path.replace('/content/_projects/', '')}/`,
+    date: file.data.date ?? new Date().toISOString(),
+    imageUrl: file.data.image,
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Fallback projects if glob fails
+const fallbackProjects = [
+  {
+    title: 'Project Alpha',
+    description: 'An innovative platform for team collaboration and workflow automation.',
+    tags: ['automation', 'collaboration'],
+    link: '/projects/alpha/',
+    date: '2026-03-15',
+  },
+  {
+    title: 'Dashboard Beta',
+    description: 'Analytics dashboard with customizable widgets and real-time charts.',
+    tags: ['analytics', 'dashboard'],
+    link: '/projects/dashboard/',
+    date: '2026-02-28',
+  },
+  {
+    title: 'API Gateway',
+    description: 'High-performance API gateway with security and monitoring.',
+    tags: ['api', 'security'],
+    link: '/projects/api/',
+    date: '2026-01-20',
+  },
+];
+
+if (projects.length === 0) {
+  projects.splice(0, 0, ...fallbackProjects);
+}
+---
+
+<BaseLayout>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <article>
+      <header class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          Projects
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          Explore the projects I've worked on. Each one represents a learning opportunity
+          and a chance to solve real-world problems.
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            tags={project.tags}
+            link={project.link}
+            date={project.date}
+            imageUrl={project.imageUrl}
+          />
+        ))}
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <p class="text-center text-gray-600 dark:text-gray-400">
+          Interested in working together? <a href="/contact/" class="text-primary-600 dark:text-primary-400 hover:underline">Get in touch</a>!
+        </p>
+      </footer>
+    </article>
+  </div>
+</BaseLayout>
